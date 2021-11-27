@@ -1,1 +1,48 @@
-<p>grafica1 works!</p>
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-doughnut
+                [title]="'Sales'"
+                [labels]="labelsSales"
+                [data]="doughnutChartData"
+                ></app-doughnut>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-doughnut
+                [title]="'Buy'"
+                [labels]="labelsbuy"
+                [data]="doughnutChartSales"
+                ></app-doughnut>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-doughnut
+                [title]="'Mat'"
+                [labels]="labelsMat"
+                [data]="doughnutChartBuy"
+                ></app-doughnut>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-doughnut
+                [title]="'Tall'"
+                [labels]="labelsTall"
+                [data]="doughnutChartTall"
+                ></app-doughnut>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,6 +10,8 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
+import { ComponentsModule } from "../components/components.module";
+
 
 
 
@@ -30,7 +32,8 @@ import { Grafica1Component } from './grafica1/grafica1.component';
     CommonModule,
     SharedModule,
     RouterModule,
-    FormsModule
+    ComponentsModule,
+    FormsModule,
   ]
 })
 export class PagesModule { }

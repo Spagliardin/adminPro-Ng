@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-progress',
   templateUrl: './progress.component.html',
@@ -7,23 +8,16 @@ import { Component } from '@angular/core';
 })
 export class ProgressComponent{
 
-  progress: number = 50
+  progressOne: number  = 25
+  progressTwo: number  = 75
 
-  get getPercentaje() {
-    return ` ${this.progress}% `
+
+  get getProgressOne(){
+    return ` ${this.progressOne}% `
   }
 
-  changeValue( valor: number ){
-
-    if (this.progress >= 100 && valor >= 0) {
-      return this.progress = 100
-    }
-    if (this.progress <= 0 && valor < 0) {
-      return this.progress = 0
-    }
-
-    return this.progress = this.progress + valor
+  get getProgresstwo(){
+    return ` ${this.progressTwo}% `
   }
-
 
 }
