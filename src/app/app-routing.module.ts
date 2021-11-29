@@ -1,5 +1,5 @@
 import { AuthRoutingModule } from './auth/auth-routing.module';
-import { PagesRoutingModule } from './pages/pages.routing.module';
+import { PagesRoutingModule } from './pages/pages-routing.module';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 
 import { NgModule } from '@angular/core';
