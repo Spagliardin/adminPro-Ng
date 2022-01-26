@@ -1,3 +1,4 @@
+import { User } from './../../models/user.model';
 import { UserService } from './../../services/user.service';
 import { Component } from '@angular/core';
 
@@ -9,7 +10,11 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent{
 
-  constructor(private userServices: UserService) { }
+  public user: User | any;
+
+  constructor(private userServices: UserService) {
+    this.user = userServices.user
+   }
 
   logout(){
     this.userServices.logout()

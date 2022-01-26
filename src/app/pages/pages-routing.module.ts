@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from '../guards/auth.guard';
 
+import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { PagesComponent } from './pages.component';
@@ -27,6 +28,7 @@ export const routes: Routes = [
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Acount Settings' } },
       { path: 'promises', component: PromisesComponent, data: { title: 'Promesas' } },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
+      { path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
     ]
    },
 

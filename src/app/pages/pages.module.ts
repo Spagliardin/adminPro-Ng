@@ -1,4 +1,4 @@
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,6 +14,7 @@ import { ComponentsModule } from "../components/components.module";
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -27,6 +28,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     AccountSettingsComponent,
     PromisesComponent,
     RxjsComponent,
+    ProfileComponent,
   ],
   exports: [
     PagesComponent,
@@ -40,6 +42,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     RouterModule,
     ComponentsModule,
     FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }

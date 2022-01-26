@@ -1,3 +1,5 @@
+import { User } from './../models/user.model';
+
 import { Router } from '@angular/router';
 import { LoginForm } from './../interfaces/login-form.interfase';
 import { RegisterForm } from './../interfaces/registerForm.interfaces';
@@ -18,12 +20,21 @@ declare const gapi: any;
 export class UserService {
 
   public auth2: any;
+  public user: User | any;
 
   constructor(private http: HttpClient,
               private router: Router,
               private ngZone: NgZone) {
 
     this.googleInit();
+  }
+
+  get token() :string{
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string{
+    return this.user.uid || '';
   }
 
   googleInit(){
@@ -55,19 +66,25 @@ export class UserService {
   }
 
   vaidateToken(): Observable<boolean> | any {
-    const token = localStorage.getItem('token') || '';
 
     return this.http
       .get(`${base_url}/login/renew`, {
         headers: {
-          'x-token': token,
+          'x-token': this.token,
         },
       })
       .pipe(
-        tap((res: any) => {
+        map((res: any) => {
+
+          const { email, google, name, role, img = '', uid }= res.user
+
+          this.user = new User(
+            name, email, '', img, google, role, uid
+          )
+
           localStorage.setItem('token', res.token);
+          return true
         }),
-        map((res) => true),
         catchError((err) => of(false))
       );
   }
@@ -78,6 +95,20 @@ export class UserService {
         localStorage.setItem('token', res.token);
       })
     );
+  }
+
+  upgradeUser(data: { email: string, name: string, role: string }){
+
+    data = {
+      ...data,
+      role: this.user.role
+    }
+
+    return this.http.put(`${base_url}/users/${ this.uid }`, data, {
+      headers: {
+        'x-token': this.token,
+      },
+    })
   }
 
   login(formData: LoginForm) {
