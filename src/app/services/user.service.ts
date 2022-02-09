@@ -1,3 +1,4 @@
+import { LoadingUsers } from './../interfaces/loading-users.interfase';
 import { User } from './../models/user.model';
 
 import { Router } from '@angular/router';
@@ -37,6 +38,14 @@ export class UserService {
     return this.user.uid || '';
   }
 
+  get headers(){
+    return {
+      headers: {
+        'x-token': this.token,
+      }
+    }
+  }
+
   googleInit(){
 
     return new Promise ( (resolve: any) => {
@@ -68,11 +77,7 @@ export class UserService {
   vaidateToken(): Observable<boolean> | any {
 
     return this.http
-      .get(`${base_url}/login/renew`, {
-        headers: {
-          'x-token': this.token,
-        },
-      })
+      .get(`${base_url}/login/renew`, this.headers)
       .pipe(
         map((res: any) => {
 
@@ -103,12 +108,7 @@ export class UserService {
       ...data,
       role: this.user.role
     }
-
-    return this.http.put(`${base_url}/users/${ this.uid }`, data, {
-      headers: {
-        'x-token': this.token,
-      },
-    })
+    return this.http.put(`${base_url}/users/${ this.uid }`, data, this.headers)
   }
 
   login(formData: LoginForm) {
@@ -125,5 +125,30 @@ export class UserService {
         localStorage.setItem('token', res.token);
       })
     );
+  }
+
+  loadingUsers( from: number = 0 ) {
+    const url = `${ base_url }/users?from=${ from }`
+    return this.http.get<LoadingUsers>( url, this.headers).pipe(
+      map( res => {
+
+        const users = res.users.map( user => new User( user.name, user.email, '', user.img, user.google, user.role, user.uid ) )
+
+        return {
+          total: res.total,
+          users
+        }
+      })
+    )
+
+  }
+
+  deleteUser( user: User ){
+    const url = `${ base_url }/users/${ user.uid }`
+    return this.http.delete( url, this.headers)
+  }
+
+  saveUser(user: User){
+    return this.http.put(`${base_url}/users/${ this.uid }`, user, this.headers)
   }
 }

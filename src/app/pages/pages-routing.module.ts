@@ -1,3 +1,4 @@
+import { UsersComponent } from './maintenance/users/users.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PromisesComponent } from './promises/promises.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
@@ -29,6 +30,9 @@ export const routes: Routes = [
       { path: 'promises', component: PromisesComponent, data: { title: 'Promesas' } },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
       { path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
+
+      // Maintenance
+      { path: 'users', component: UsersComponent, data: { title: 'Users' } },
     ]
    },
 
